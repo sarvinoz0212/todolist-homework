@@ -1,0 +1,268 @@
+@use './common/fonts.scss';
+@use './common/common.scss';
+
+:root {
+    --bg: #F3EDF7;
+    --shadow:box-shadow: 0px 1px 4px #0000004D;
+    --title: #1C1B1F;
+    --date:#c1b1d1;
+    --purple: #6750A4;
+    --red: #CF1B1B;
+    --text:#49454F;
+    --editBg: #d1c8e9;
+    --delBg: #f6c9c9;
+}
+.nav{
+    background-color: var(--bg);
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+    overflow: hidden;
+        input{
+    font-weight: 400;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background-color: unset;
+    width: 70%;
+    &::placeholder{
+        color: #9D9D9D;
+    }
+
+
+    }
+    &_lang{
+        position: relative;
+        width: 55px;
+        height: 25px;   
+        &_btn{
+            font-size: 20px;
+            font-size: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translateY(-200%);
+            transition: 0.5s;
+            &.active{
+                transform: translate(0);
+            }
+            img{
+                width: 30px
+            }
+        }
+    }
+    &_title{
+    font-weight: 400;
+    font-size: 22px;
+    text-align: center;
+
+    }
+}
+.search{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(-150%);
+    transition: 0.5s;
+    &.active{
+        transform: translate(0);
+    }
+}
+.notes{
+    margin-top: 30px;
+    &_top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &_title{
+            color: var(--title);
+            font-weight: 400;
+            font-size: 22px;
+        }
+        &_btn{
+            width: 120px;
+            height: 55px;
+            background-color: var(--bg);
+            box-shadow: var(--shadow);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            span{
+                color: var(--purple);
+                font-weight: 500;
+                font-size: 14px;
+                }
+        }
+    }
+    &_box{
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-top: 30px;
+        &.active{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            .notes_card{
+                &_info{
+                flex-direction: column;
+
+                }
+            }
+        }
+    }
+    &_card{
+        background-color: var(--bg);
+        box-shadow: var(--shadow);
+        border-radius: 16px;
+        padding: 16px;
+        &_info{
+            display: flex;
+            justify-content: space-between;
+        }
+        &_title{
+            color: var(--title);
+            font-weight: 600;
+            font-size: 16px;
+        }
+        &_date{
+            color: var(--date);
+            font-weight: 400;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        &_text{
+            margin: 16px 0;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.25px;
+            color: var(--text);            
+        }
+        &_btns{
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}
+.btn{
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-weight: 500;
+    text-transform: uppercase;
+    span{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        
+    }
+}
+.edit{
+    color: var(--purple);
+    &:hover{
+        background-color: var(--editBg);
+    }
+}
+.del{
+    color: var(--red);
+    &:hover{
+        background-color: var(--delBg);
+    }
+}
+.addBtn{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--bg);
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #00000059;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    transition: 0.3s;
+    &.active{
+        visibility: visible;
+        .modal_card{
+            transform: scale(1);
+        }
+    }
+    &_card{
+        background-color: var(--bg);
+        box-shadow: var(--shadow);
+        width: 312px;
+        border-radius: 28px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        transition: 0.3s;
+        transform: scale(0);
+        &_title{
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 32px;
+            color: var(--title);            
+        }
+        &_label{
+            display: flex;
+            flex-direction: column;
+            background-color: #E7E0EC;
+            margin-top: 16px;
+            padding: 8px 16px;
+            border-radius: 4px 4px 0 0;
+            border-bottom: 1px solid #000;
+            width: 264px;
+            span{
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 16px;
+                letter-spacing: 0.4px;
+                color: var(--purple);
+            }
+            input{
+                background: unset;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: 0.5px;
+                color: var(--text);  
+                &::placeholder{
+                    color: #49454F;
+                }              
+
+            }
+        }
+        &_btns{
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+
+    }
+}
+.delNote_title{
+    margin-top: 30px;
+}
